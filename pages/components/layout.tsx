@@ -5,7 +5,7 @@ type LayoutProps = Required<{
   readonly children: ReactElement
 }>;
 
-export const Layout = ({ children }: LayoutProps) => (
+const Layout = ({ children }: LayoutProps) => (
   <>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="inherit">
@@ -18,3 +18,5 @@ export const Layout = ({ children }: LayoutProps) => (
     <main>{children}</main>
   </>
 )
+
+export default Layout;

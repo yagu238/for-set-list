@@ -7,43 +7,30 @@ import {
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { SaveAs } from "@mui/icons-material";
-import type { Liff } from "@line/liff";
-import {
-  deco27List,
-  jinList,
-  lastNoteList,
-  mikitoList,
-  mp40List,
-  nenuList,
-  reruririList,
-  honeyWorksList,
-  suriList,
-  otherList,
-} from "./components/songs";
 import axios from "axios";
-import { RatingDto } from "./types/rating.dto";
-import { RatingContent } from "./types/rating.content";
 import { useEffect, useState } from "react";
-import { UserInfo } from "./types/user-info.content";
+import { PageProps } from "./_app";
+import getSongList from "../data/song-list";
 
-type RatingProps = {
-  liff: Liff | null;
-  liffError: string | null;
+type RatingContent = {
+  videoId: string;
+  rating: number;
+  title: string;
+  songBy: string;
 };
 
-const Rating = ({ liff, liffError }: RatingProps) => {
-  const defaultList = [
-    ...mikitoList,
-    ...jinList,
-    ...mp40List,
-    ...nenuList,
-    ...deco27List,
-    ...honeyWorksList,
-    ...suriList,
-    ...lastNoteList,
-    ...reruririList,
-    ...otherList,
-  ];
+type RatingDto = {
+  user_id: string;
+  contents: RatingContent[];
+};
+
+type UserInfo = {
+  userId: string;
+  isSaved: boolean;
+};
+
+const Rating = ({ liff, liffError }: PageProps) => {
+  const defaultList = getSongList();
 
   const [contents, setContents] = useState<RatingContent[]>([]);
   const [saved, setSaved] = useState<boolean>(false);

@@ -1,8 +1,25 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { CmsRatingContent } from "../types/cms-rating.content";
-import { RatingDto } from "../types/rating.dto";
 import { client } from "./client.cms";
+
+type CmsRatingContent = {
+  user_id: string;
+  details: {
+    fieldId: "details";
+    video_id: string;
+    rating: number;
+  }[];
+};
+
+type RatingDto = {
+  user_id: string;
+  contents: {
+    videoId: string;
+    rating: number;
+    title: string;
+    songBy: string;
+  }[];
+};
 
 type CreateRatingData = {
   isSuccess: boolean;

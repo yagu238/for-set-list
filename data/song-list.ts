@@ -1,4 +1,4 @@
-export type SongListType = {
+type SongListType = {
   createBy: string;
   title: string;
   songBy: string;
@@ -6,7 +6,7 @@ export type SongListType = {
   rating: number;
 };
 
-export const mikitoList: SongListType[] = [
+const mikitoList: SongListType[] = [
   // みきとP
   {
     createBy: "かわやん",
@@ -31,7 +31,7 @@ export const mikitoList: SongListType[] = [
   },
 ];
 
-export const jinList: SongListType[] = [
+const jinList: SongListType[] = [
   // じん
   {
     createBy: "かわやん",
@@ -49,7 +49,7 @@ export const jinList: SongListType[] = [
   },
 ];
 
-export const mp40List: SongListType[] = [
+const mp40List: SongListType[] = [
   // 40mP
   {
     createBy: "やぐ",
@@ -74,7 +74,7 @@ export const mp40List: SongListType[] = [
   },
 ];
 
-export const nenuList: SongListType[] = [
+const nenuList: SongListType[] = [
   // Neru
   {
     createBy: "オバル",
@@ -99,7 +99,7 @@ export const nenuList: SongListType[] = [
   },
 ];
 
-export const deco27List: SongListType[] = [
+const deco27List: SongListType[] = [
   // DECO*27
   {
     createBy: "オバル",
@@ -117,7 +117,7 @@ export const deco27List: SongListType[] = [
   },
 ];
 
-export const honeyWorksList: SongListType[] = [
+const honeyWorksList: SongListType[] = [
   // HoneyWorks
   {
     createBy: "オバル",
@@ -135,7 +135,7 @@ export const honeyWorksList: SongListType[] = [
   },
 ];
 
-export const suriList: SongListType[] = [
+const suriList: SongListType[] = [
   // すりぃ
   {
     createBy: "早川",
@@ -153,7 +153,7 @@ export const suriList: SongListType[] = [
   },
 ];
 
-export const lastNoteList: SongListType[] = [
+const lastNoteList: SongListType[] = [
   // Last Note.
   {
     createBy: "オバル",
@@ -171,7 +171,7 @@ export const lastNoteList: SongListType[] = [
   },
 ];
 
-export const reruririList: SongListType[] = [
+const reruririList: SongListType[] = [
   // れるりり
   {
     createBy: "オバル",
@@ -189,7 +189,7 @@ export const reruririList: SongListType[] = [
   },
 ];
 
-export const otherList: SongListType[] = [
+const otherList: SongListType[] = [
   // Other
   {
     createBy: "やぐ",
@@ -332,3 +332,20 @@ export const otherList: SongListType[] = [
     rating: 3,
   },
 ];
+
+const getSongList = () => {
+  return [
+    ...mikitoList,
+    ...jinList,
+    ...mp40List,
+    ...nenuList,
+    ...deco27List,
+    ...honeyWorksList,
+    ...suriList,
+    ...lastNoteList,
+    ...reruririList,
+    ...otherList,
+  ];
+};
+
+export default getSongList;

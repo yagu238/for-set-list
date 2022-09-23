@@ -1,8 +1,20 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { CmsRatingContent } from '../types/cms-rating.content'
-import { UserInfo } from '../types/user-info.content';
 import { client } from './client.cms'
+
+type CmsRatingContent = {
+  user_id: string;
+  details: {
+    fieldId: "details";
+    video_id: string;
+    rating: number;
+  }[];
+};
+
+type UserInfo = {
+  userId: string;
+  isSaved: boolean;
+};
 
 export default async function handler(
   req: NextApiRequest,

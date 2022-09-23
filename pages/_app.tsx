@@ -2,9 +2,14 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import type { Liff } from "@line/liff";
 import { useState, useEffect } from "react";
-import { Layout } from "./components/layout";
+import Layout from "./components/layout";
 
-function MyApp({ Component, pageProps }: AppProps) {
+export type PageProps = {
+  liff: Liff | null;
+  liffError: string | null;
+};
+
+function MyApp({ Component, pageProps }: AppProps<PageProps>) {
   const [liffObject, setLiffObject] = useState<Liff | null>(null);
   const [liffError, setLiffError] = useState<string | null>(null);
 

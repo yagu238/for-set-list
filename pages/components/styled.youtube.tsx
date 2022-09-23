@@ -3,9 +3,16 @@ import { PlayCircleFilledOutlined } from "@mui/icons-material";
 import { Button, Card, CardHeader, CardMedia } from "@mui/material";
 import YouTube from "react-youtube";
 import style from "../../styles/Youtube.module.css";
-import { SongListType } from "./songs";
 
-export const StyledYoutube: React.FC<SongListType> = ({
+type SongListType = {
+  createBy: string;
+  title: string;
+  songBy: string;
+  videoId: string;
+  rating: number;
+};
+
+const StyledYoutube: React.FC<SongListType> = ({
   createBy,
   title,
   songBy,
@@ -54,3 +61,5 @@ export const StyledYoutube: React.FC<SongListType> = ({
     </Card>
   );
 };
+
+export default StyledYoutube;
