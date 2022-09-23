@@ -9,9 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@line/liff": "2.21.1",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/lab": "^5.0.0-alpha.100",
+    "@mui/material": "^5.10.5",
+    "axios": "^0.27.2",
+    "microcms-js-sdk": "^2.2.1",
     "next": "12.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-youtube": "^10.0.0"
   },
   "devDependencies": {
     "@types/node": "18.7.18",
