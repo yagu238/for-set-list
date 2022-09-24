@@ -1,12 +1,21 @@
 import type { Liff } from "@line/liff";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
   liff,
   liffError
 }) => {
+  const [userName, setUserName] = useState('not isLoggedIn');
+  
+  useEffect(() => {
+    liff?.getProfile().then(value => {
+      setUserName(value.displayName);
+    });
+  }, [liff]);
+
   return (
     <div>
       <Head>
@@ -18,6 +27,7 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
       <main className={styles.main}>
         <h1>for set list</h1>
         {liff && <p>LIFF init succeeded. </p>}
+        {liff && <p>Welcome: {userName}</p>}
         {liffError && (
           <>
             <p>LIFF init failed.</p>
