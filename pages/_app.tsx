@@ -25,6 +25,9 @@ function MyApp({ Component, pageProps }: AppProps<PageProps>) {
           .then(() => {
             console.log("LIFF init succeeded.");
             setLiffObject(liff);
+            if (!liff.isLoggedIn()) {
+              liff.login();
+            }
           })
           .catch((error: Error) => {
             console.log("LIFF init failed.");
