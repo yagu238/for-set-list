@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   List,
   ListItem,
   ListItemText,
@@ -9,6 +10,7 @@ import { LoadingButton } from "@mui/lab";
 import { SaveAs } from "@mui/icons-material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import NextLink from "next/link";
 import { PageProps } from "./_app";
 import getSongList from "../data/song-list";
 
@@ -123,7 +125,16 @@ const Rating = ({ liff, liffError }: PageProps) => {
           </LoadingButton>
         )}
         {/* {contents.length === 0 && <p>コンテンツの取得に失敗しました。</p>} */}
-        {saved && <p>回答ありがとうございます。</p>}
+        {saved && (
+          <Box>
+            <p>回答ありがとうございます。</p>
+            <NextLink href="/result" passHref>
+              <Button color="inherit" variant="outlined">
+                集計結果を表示する
+              </Button>
+            </NextLink>
+          </Box>
+        )}
       </Box>
     </>
   );
