@@ -37,6 +37,7 @@ const Rating = ({ liff, liffError }: PageProps) => {
 
   useEffect(() => {
     if (!liff) return;
+    if (!liff.isLoggedIn()) return;
 
     axios
       .get<UserInfo>("api/ratings", {
