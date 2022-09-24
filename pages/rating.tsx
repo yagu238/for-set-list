@@ -34,17 +34,21 @@ const Rating = ({ liff, liffError }: PageProps) => {
 
   const [contents, setContents] = useState<RatingContent[]>([]);
   const [saved, setSaved] = useState<boolean>(false);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     if (!liff) return;
     if (!liff.isLoggedIn()) return;
+    liff.getProfile().then((value) => {
+      setUserId(value.userId);
+    });
+  }, [liff]);
+
+  useEffect(() => {
+    if (!userId) return;
 
     axios
-      .get<UserInfo>("api/ratings", {
-        params: {
-          userId: liff.getIDToken() ?? "dummy"
-        }
-      })
+      .get<UserInfo>("api/ratings", { params: { userId } })
       .then((res) => {
         const info = res.data;
         setSaved(info.isSaved);
@@ -60,7 +64,7 @@ const Rating = ({ liff, liffError }: PageProps) => {
         setContents(defList);
       })
       .catch((e) => {});
-  }, [liff]);
+  }, [userId]);
 
   const [loading, setLoading] = useState(false);
 
@@ -73,7 +77,7 @@ const Rating = ({ liff, liffError }: PageProps) => {
   const handleClick = async () => {
     setLoading(true);
     const dto: RatingDto = {
-      user_id: liff ? liff.getIDToken() ?? "dummy" : "notliff",
+      user_id: userId,
       contents: contents,
     };
     const res = await axios.post("api/create-ratings", dto).catch((e) => {
@@ -86,21 +90,22 @@ const Rating = ({ liff, liffError }: PageProps) => {
   return (
     <>
       <List>
-        {!saved && contents.map((song) => (
-          <ListItem disablePadding key={song.videoId}>
-            <ListItemText
-              sx={{ px: 1 }}
-              primary={song.title + "/" + song.songBy}
-            />
-            <RatingMui
-              defaultValue={song.rating}
-              precision={1}
-              onChange={(event, newValue) =>
-                onChangeRating(song.videoId, newValue ?? song.rating)
-              }
-            />
-          </ListItem>
-        ))}
+        {!saved &&
+          contents.map((song) => (
+            <ListItem disablePadding key={song.videoId}>
+              <ListItemText
+                sx={{ px: 1 }}
+                primary={song.title + "/" + song.songBy}
+              />
+              <RatingMui
+                defaultValue={song.rating}
+                precision={1}
+                onChange={(event, newValue) =>
+                  onChangeRating(song.videoId, newValue ?? song.rating)
+                }
+              />
+            </ListItem>
+          ))}
       </List>
       <Box sx={{ p: 1 }}>
         {!saved && contents.length > 0 && (
